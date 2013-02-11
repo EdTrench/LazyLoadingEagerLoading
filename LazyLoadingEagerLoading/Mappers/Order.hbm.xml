@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="LazyLoadingEagerLoading"
+                   namespace="LazyLoadingEagerLoading.Model">
+
+  <class name="Order" table="Orders">
+    <id name="Id">
+      <generator class="guid"/>
+    </id>
+    <property name="OrderNumber"/>
+    <property name="OrderDate"/>
+
+    <many-to-one name="Customer" />
+
+    <set name="OrderLines" cascade="all-delete-orphan" >
+      <key column="OrderId"/>
+      <one-to-many class="OrderLine"/>
+    </set>
+
+  </class>
+
+</hibernate-mapping>
